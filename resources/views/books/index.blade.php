@@ -37,6 +37,19 @@
                     <a href="{{ route('books.edit', $book->id) }}"
                        class="bg-yellow-500 text-white px-3 py-1 rounded">
                         Edit
+                        <form action="{{ route('books.destroy', $book->id) }}"
+      method="POST"
+      onsubmit="return confirm('Are you sure you want to delete this book?')">
+
+    @csrf
+    @method('DELETE')
+
+    <button type="submit"
+            class="bg-red-500 text-white px-3 py-1 rounded">
+        Delete
+    </button>
+
+</form>
                     </a>
 
                 </div>
