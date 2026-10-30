@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Book;
 
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+   public function index()
+{
+    $books = Book::all();
+
+    return view('books.index', compact('books'));
+}
+    
+    
         //
     }
 
@@ -18,19 +22,27 @@ class BookController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
-    }
+{
+    return view('books.create');
+}
 
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'author' => 'required|string|max:255',
+        'status' => 'required|in:to-read,reading,finished',
+    ]);
+
+    Book::create($validated);
+
+    return redirect()->route('books.index');
+}
     /**
      * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    
 
-    /**
+    
      * Display the specified resource.
      */
     public function show(string $id)
