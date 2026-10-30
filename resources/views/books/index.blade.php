@@ -60,7 +60,25 @@
 
                     <p>Author: {{ $book->author }}</p>
 
-                    <p>Status: {{ $book->status }}</p>
+                    <p class="mt-2">
+    Status:
+
+    @if($book->status == 'to-read')
+        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
+            To Read
+        </span>
+
+    @elseif($book->status == 'reading')
+        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+            Reading
+        </span>
+
+    @elseif($book->status == 'finished')
+        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+            Finished
+        </span>
+    @endif
+</p>
 
                     <a href="{{ route('books.edit', $book->id) }}"
                        class="bg-yellow-500 text-white px-3 py-1 rounded">
