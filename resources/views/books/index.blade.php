@@ -8,6 +8,27 @@
 <body class="bg-gray-100 p-8">
 
     <h1 class="text-3xl font-bold mb-6">My Reading List</h1>
+    <form action="{{ route('books.index') }}" method="GET"
+      class="mb-6 flex gap-2">
+
+    <input
+        type="text"
+        name="search"
+        value="{{ request('search') }}"
+        placeholder="Search by book title or author..."
+        class="border p-2 rounded w-80">
+
+    <button type="submit"
+            class="bg-blue-500 text-white px-4 py-2 rounded">
+        Search
+    </button>
+
+    <a href="{{ route('books.index') }}"
+       class="bg-gray-500 text-white px-4 py-2 rounded">
+        Clear
+    </a>
+
+</form>
     @if(session('success'))
     <div class="bg-green-100 text-green-700 p-3 mb-4 rounded">
         {{ session('success') }}

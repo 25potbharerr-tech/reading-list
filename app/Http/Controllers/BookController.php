@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-   public function index(Request $request)
+public function index(Request $request)
 {
     $status = $request->query('status');
+    $search = $request->query('search');
 
     $query = Book::query();
 
@@ -17,11 +18,17 @@ class BookController extends Controller
         $query->where('status', $status);
     }
 
+    if ($search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('title', 'like', "%{$search}%")
+              ->orWhere('author', 'like', "%{$search}%");
+        });
+    }
+
     $books = $query->get();
 
-    return view('books.index', compact('books', 'status'));
-}
-    
+    return view('books.index', compact('books', 'status', 'search'));
+}  
 
     
 
