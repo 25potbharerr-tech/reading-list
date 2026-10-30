@@ -14,13 +14,10 @@ class BookController extends Controller
     return view('books.index', compact('books'));
 }
     
-    
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
+
+    
 public function create()
 {
     return view('books.create');
