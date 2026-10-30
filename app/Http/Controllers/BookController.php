@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-   public function index()
+   public function index(Request $request)
 {
-    $books = Book::all();
+    $status = $request->query('status');
 
-    return view('books.index', compact('books'));
+    $query = Book::query();
+
+    if (in_array($status, ['to-read', 'reading', 'finished'])) {
+        $query->where('status', $status);
+    }
+
+    $books = $query->get();
+
+    return view('books.index', compact('books', 'status'));
 }
     
 

@@ -8,6 +8,29 @@
 <body class="bg-gray-100 p-8">
 
     <h1 class="text-3xl font-bold mb-6">My Reading List</h1>
+    <div class="flex gap-3 mb-6">
+
+    <a href="{{ route('books.index') }}"
+       class="bg-gray-500 text-white px-3 py-2 rounded">
+        All Books
+    </a>
+
+    <a href="{{ route('books.index', ['status' => 'to-read']) }}"
+       class="bg-blue-500 text-white px-3 py-2 rounded">
+        To Read
+    </a>
+
+    <a href="{{ route('books.index', ['status' => 'reading']) }}"
+       class="bg-yellow-500 text-white px-3 py-2 rounded">
+        Reading
+    </a>
+
+    <a href="{{ route('books.index', ['status' => 'finished']) }}"
+       class="bg-green-500 text-white px-3 py-2 rounded">
+        Finished
+    </a>
+
+</div>
 
     <a href="{{ route('books.create') }}"
        class="bg-green-500 text-white px-4 py-2 rounded">
