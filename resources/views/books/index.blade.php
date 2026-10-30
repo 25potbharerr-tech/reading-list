@@ -8,6 +8,11 @@
 <body class="bg-gray-100 p-8">
 
     <h1 class="text-3xl font-bold mb-6">My Reading List</h1>
+    @if(session('success'))
+    <div class="bg-green-100 text-green-700 p-3 mb-4 rounded">
+        {{ session('success') }}
+    </div>
+@endif
     <div class="flex gap-3 mb-6">
 
     <a href="{{ route('books.index') }}"

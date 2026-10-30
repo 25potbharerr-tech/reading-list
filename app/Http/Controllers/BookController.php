@@ -39,8 +39,8 @@ public function store(Request $request)
     ]);
 
     Book::create($validated);
-
-    return redirect()->route('books.index');
+return redirect()->route('books.index')
+    ->with('success', 'Book added successfully!');
 }
     /**
      * Store a newly created resource in storage.
@@ -72,7 +72,8 @@ public function update(Request $request, Book $book)
 
     $book->update($validated);
 
-    return redirect()->route('books.index');
+   return redirect()->route('books.index')
+    ->with('success', 'Book updated successfully!');
 }
 
     /**
